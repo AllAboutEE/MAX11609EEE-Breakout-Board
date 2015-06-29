@@ -147,6 +147,9 @@
 		<Folder
 			Name="Other Files"
 			Filters="">
+			<F N="Software/AllAboutEE-MAX11609-Library/examples/read_all_channels/read_all_channels.ino"/>
+			<F N="Software/AllAboutEE-MAX11609-Library/examples/read_one_channel/read_one_channel.ino"/>
+			<F N="Software/AllAboutEE-MAX11609-Library/examples/template/template.ino"/>
 		</Folder>
 	</Files>
 </Project>

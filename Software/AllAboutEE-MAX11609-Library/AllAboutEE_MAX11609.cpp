@@ -1,4 +1,5 @@
 #include "AllAboutEE_MAX11609.h"
+#include <Arduino.h>
 #include <Wire.h>
 
 /**
@@ -6,9 +7,23 @@
  * 
  * @author Miguel (5/24/2015)
  */
-void AllAboutEE::MAX11609::begin()
+void AllAboutEE::MAX11609::begin(uint8_t vRef)
 {
-    return 0;
+    Wire.begin();
+
+    // 0 - don't care
+    // 1 - reset configuration register to default
+    // 2 - unipolar
+    // 3 - internal clock
+    // 4 - SEL0 (vRef)
+    // 5 - SEL1 (vRef)
+    // 6 - SEL2 (vRef)
+    setup(vRef & 0xf0); // 0B[vRef2][vRef1][vRef0] 0000
+
+    // 0 - Single Ended
+    // 1 to 4 - Channel Select:  7
+    // 5 to 6 - Scan Mode: read channels up to selected channel
+    configuration(B00001111);
 }
 
 /**
@@ -18,11 +33,13 @@ void AllAboutEE::MAX11609::begin()
  * 
  * @param data The setup byte to write
  * 
- * @return uint8_t status code
  */
-uint8_t AllAboutEE::MAX11609::setup(uint8_t data)
+void AllAboutEE::MAX11609::setup(uint8_t data)
 {
-    return 0;
+ 
+    Wire.beginTransmission(ADDRESS);
+    Wire.write(data | 0x80); 
+    Wire.endTransmission();
 }
 
 /**
@@ -32,70 +49,82 @@ uint8_t AllAboutEE::MAX11609::setup(uint8_t data)
  * @author Miguel (5/24/2015)
  * 
  * @param data The configuration byte to write
- * 
- * @return uint8_t status code
+ *  
  */
-uint8_t AllAboutEE::MAX11609::configuration(uint8_t data)
+void AllAboutEE::MAX11609::configuration(uint8_t data)
 {
-
-    return 0;
+    Wire.beginTransmission(ADDRESS);
+    Wire.write(data & (~0x80)); // make REG bit 7 = 0 (configuration byte)
+    Wire.endTransmission();
 }
 
 /**
- * Sets the converter's Channel Select (CS) bits.
- * 
- * @author Miguel (5/24/2015)
- * 
- * @param channel The channel number (0 to 7)
- * 
- * @return uint8_t status code
- */
-uint8_t AllAboutEE::MAX11609::setChannel(uint8_t channel)
-{
-    this.channel = channel;
-
-    // write CS bits
-
-    return 0;
-}
-
-/**
- * Single conversion: Converts and reads the set channel.
+ * Reads one channel.
  * 
  * @author Miguel (5/24/2015)
  * 
  * @param channel The channel to convert or read. Alternatively 
  *                if a channel was set already leave null.
  * 
- * @return uint8_t status code
+ * @return uint16_t The conversion result or -1 if there's an 
+ *         error.
  */
-uint8_t AllAboutEE::MAX11609::read(uint8_t channel
+uint16_t AllAboutEE::MAX11609::read(uint8_t channel)
 {
-    if(channel == NULL)
+
+    uint16_t result = 0x00;
+
+    uint8_t configurationByte = (channel & B00000111) | B01100001;
+    configuration(configurationByte);
+
+    Wire.requestFrom(ADDRESS,2,true);
+
+    if(Wire.available()==2) // the conversion consists of two bytes per channel
     {
-        // read using set channel
+        for(uint8_t i=0;i<2;i++)
+        {   
+            result = Wire.read()<<8; // MSB is returned first
+            result |= Wire.read(); // read LSB
+        }
+
+        return result;
     }
     else
     {
-        // set channel 
-
-        // read
+        return -1; // ERROR
     }
 
-    return 0;
 }
 
 /**
- * Scan mode conversions. Reads channels up to set channel.
+ * Reads all channels conversion into a buffer/array.
  * 
  * @author Miguel (5/24/2015)
  * 
  * @param buffer an array where the channel read values are put.
  */
-void AllAboutEE::MAX11609::scan(uint8_t *buffer)
+void AllAboutEE::MAX11609::scan(uint16_t *buffer)
 {
-    for(uint8_t i = 0;i<=channel;i++)
+    uint8_t configurationByte = B00001111;
+    configuration(configurationByte);
+
+    Wire.requestFrom(ADDRESS,16,true); // 2 bytes per channel. There are 8 channels.
+
+    while(Wire.available())
     {
-        // read channel to buffer
+        for(uint8_t i = 0;i<16;i++)
+        {
+            for(uint8_t j=0;j<2;j++) // each channel reading consists of two bytes.
+            {   
+                if(j==0)
+                {
+                    *(buffer+j) = Wire.read()<<8; // MSB is returned first
+                }
+                else
+                {
+                    *(buffer+j) |= Wire.read(); // read LSB
+                }
+            }
+        }
     }
 }
