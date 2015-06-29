@@ -1,0 +1,25 @@
+[Global]
+CurrentProject=MAX11609EEE-Breakout-Board.vpj
+[ActiveConfig]
+MAX11609EEE-Breakout-Board.vpj=Debug
+[ProjectDates]
+MAX11609EEE-Breakout-Board.vpj=20150629012045038
+[State]
+SCREEN: 1366 768 4 0 670 693 0 0 M 0 0 0 0 1181 629 0
+CWD: \Program Files (x86)\Arduino\libraries\Boekel-Open-Source-Bio
+FILEHIST: 9
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\examples\Send_Without_Button_Press\Send_Without_Button_Press.ino
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\examples\Light_Bulb_Control\Light_Bulb_Control.ino
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\examples\Xbox_One_Control\Xbox_One_Control.ino
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\examples\TV_Control\TV_Control.ino
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\examples\TV_XboxOne_Fan_Control\TV_XboxOne_Fan_Control.ino
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\AllAboutEE_IRrecv.h
+\Program Files (x86)\Arduino\libraries\AllAboutEE-IR-Shield-Library\AllAboutEE_IRremoteInt.h
+Software\AllAboutEE-MAX11609-Library\AllAboutEE_MAX11609.h
+Software\AllAboutEE-MAX11609-Library\AllAboutEE_MAX11609.cpp
+TBCLASS: 0 0
+DEBUG: 0 0 0 0 3 0 gdb
+printf
+strcpy
+std::*
+DEBUG2: 0
