@@ -13,6 +13,7 @@ MAX11609 converter;
 
 void setup()
 {
+    Serial.begin(9600);
     converter.begin(MAX11609::REF_VDD); // use VDD as reference.
 }
 
@@ -29,7 +30,9 @@ void loop()
         Serial.print(i);
         Serial.print(": ");
         Serial.println(result[i]);
+        
     }
+    Serial.println();
 
     delay(1000); // read every 1 second
 }

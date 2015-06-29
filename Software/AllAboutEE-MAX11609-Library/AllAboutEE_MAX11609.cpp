@@ -72,20 +72,19 @@ void AllAboutEE::MAX11609::configuration(uint8_t data)
 uint16_t AllAboutEE::MAX11609::read(uint8_t channel)
 {
 
-    uint16_t result = 0x00;
+    uint16_t result = 0x0000;
 
-    uint8_t configurationByte = (channel & B00000111) | B01100001;
+    uint8_t configurationByte = ( (channel<<1) & B00001110) | B01100001;
     configuration(configurationByte);
 
-    Wire.requestFrom(ADDRESS,2,true);
+    Wire.requestFrom(ADDRESS,2,false);
 
     if(Wire.available()==2) // the conversion consists of two bytes per channel
     {
-        for(uint8_t i=0;i<2;i++)
-        {   
-            result = Wire.read()<<8; // MSB is returned first
-            result |= Wire.read(); // read LSB
-        }
+
+        result = (Wire.read() & 0x03)<<8; // MSB is returned first. [7-2] are high.
+        result |= Wire.read()&0x00ff; // read LSB
+        
 
         return result;
     }
@@ -108,23 +107,15 @@ void AllAboutEE::MAX11609::scan(uint16_t *buffer)
     uint8_t configurationByte = B00001111;
     configuration(configurationByte);
 
-    Wire.requestFrom(ADDRESS,16,true); // 2 bytes per channel. There are 8 channels.
+    Wire.requestFrom(ADDRESS,16,false); // 2 bytes per channel. There are 8 channels.
 
-    while(Wire.available())
+    if(Wire.available()==16)
     {
-        for(uint8_t i = 0;i<16;i++)
+        for(uint8_t i = 0;i<8;i++) // read all 8 channels [AIN0-AIN7]
         {
-            for(uint8_t j=0;j<2;j++) // each channel reading consists of two bytes.
-            {   
-                if(j==0)
-                {
-                    *(buffer+j) = Wire.read()<<8; // MSB is returned first
-                }
-                else
-                {
-                    *(buffer+j) |= Wire.read(); // read LSB
-                }
-            }
+
+            *(buffer+i) = (Wire.read() & 0x03)<<8; // MSB is returned first. [7-2] are high.
+            *(buffer+i) |= Wire.read()&0x00ff; // read LSB               
         }
     }
 }

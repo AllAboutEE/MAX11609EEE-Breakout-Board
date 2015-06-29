@@ -13,6 +13,7 @@ MAX11609 converter;
 
 void setup()
 {
+    Serial.begin(9600);
     converter.begin(MAX11609::REF_VDD); // use VDD as reference
 }
 
