@@ -12,6 +12,7 @@
         class MAX11609
         {
         public:
+            void begin(uint8_t sda, uint8_t scl, uint8_t vRef = NULL);
             void begin(uint8_t vRef = NULL);
             void setup(uint8_t data);
             void configuration(uint8_t data);

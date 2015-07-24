@@ -2,6 +2,13 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+
+void AllAboutEE::MAX11609::begin(uint8_t sda, uint8_t scl, uint8_t vRef )
+{
+    Wire.pins(sda,scl);
+    Wire.begin(vRef);
+}
+
 /**
  * Sets up the MAX11609 with a default configuration.
  * 
