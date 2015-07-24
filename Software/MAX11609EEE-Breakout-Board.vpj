@@ -1,156 +1,159 @@
 <!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
 <Project
-	Version="10.0"
-	VendorName="SlickEdit"
-	TemplateName="Other C/C++"
-	WorkingDir="."
-	VCSProject="Git:">
-	<Config
-		Name="Debug"
-		Type="cpp"
-		DebugCallbackName="gdb"
-		OutputFile="%bdMAX11609EEE-Breakout-Board"
-		CompilerConfigName="Latest Version">
-		<Menu>
-			<Target
-				Name="Compile"
-				MenuCaption="&amp;Compile"
-				CaptureOutputWith="ProcessBuffer"
-				OutputExts="*.o"
-				SaveOption="SaveCurrent"
-				RunFromDir="%rw">
-				<Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
-			</Target>
-			<Target
-				Name="Link"
-				MenuCaption="&amp;Link">
-				<Exec CmdLine='cc -g -o "%o" %f %libs'/>
-			</Target>
-			<Target
-				Name="Build"
-				MenuCaption="&amp;Build"
-				CaptureOutputWith="ProcessBuffer"
-				SaveOption="SaveWorkspaceFiles"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
-			</Target>
-			<Target
-				Name="Rebuild"
-				MenuCaption="&amp;Rebuild"
-				CaptureOutputWith="ProcessBuffer"
-				SaveOption="SaveWorkspaceFiles"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
-			</Target>
-			<Target
-				Name="Debug"
-				MenuCaption="&amp;Debug"
-				SaveOption="SaveNone"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
-				RunFromDir="%rw">
-				<Exec CmdLine='vsdebugio -prog "%o"'/>
-			</Target>
-			<Target
-				Name="Execute"
-				MenuCaption="E&amp;xecute"
-				SaveOption="SaveNone"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%o"'/>
-			</Target>
-		</Menu>
-	</Config>
-	<Config
-		Name="Release"
-		Type="cpp"
-		DebugCallbackName="gdb"
-		OutputFile="%bdMAX11609EEE-Breakout-Board"
-		CompilerConfigName="Latest Version">
-		<Menu>
-			<Target
-				Name="Compile"
-				MenuCaption="&amp;Compile"
-				CaptureOutputWith="ProcessBuffer"
-				SaveOption="SaveCurrent"
-				OutputExts="*.o"
-				RunFromDir="%rw">
-				<Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
-			</Target>
-			<Target
-				Name="Link"
-				MenuCaption="&amp;Link">
-				<Exec CmdLine='cc -O -o "%o" %f %libs'/>
-			</Target>
-			<Target
-				Name="Build"
-				MenuCaption="&amp;Build"
-				CaptureOutputWith="ProcessBuffer"
-				SaveOption="SaveWorkspaceFiles"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
-			</Target>
-			<Target
-				Name="Rebuild"
-				MenuCaption="&amp;Rebuild"
-				CaptureOutputWith="ProcessBuffer"
-				SaveOption="SaveWorkspaceFiles"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
-			</Target>
-			<Target
-				Name="Debug"
-				MenuCaption="&amp;Debug"
-				SaveOption="SaveNone"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
-				RunFromDir="%rw">
-				<Exec CmdLine='vsdebugio -prog "%o"'/>
-			</Target>
-			<Target
-				Name="Execute"
-				MenuCaption="E&amp;xecute"
-				SaveOption="SaveNone"
-				BuildFirst="1"
-				CaptureOutputWith="ProcessBuffer"
-				RunFromDir="%rw">
-				<Exec CmdLine='"%o"'/>
-			</Target>
-		</Menu>
-	</Config>
-	<Rules Name="Compile">
-		<Rule
-			InputExts="*.s"
-			OutputExts="*.o"
-			LinkObject="1">
-			<Exec CmdLine='as -o "%bd%n.o" "%f"'/>
-		</Rule>
-	</Rules>
-	<Files>
-		<Folder
-			Name="Source Files"
-			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go">
-			<F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609.cpp"/>
-		</Folder>
-		<Folder
-			Name="Header Files"
-			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
-			<F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609.h"/>
-			<F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609EEE.h"/>
-		</Folder>
-		<Folder
-			Name="Resource Files"
-			Filters="*.ico;*.cur;*.dlg"/>
-		<Folder
-			Name="Bitmaps"
-			Filters="*.bmp"/>
-		<Folder
-			Name="Other Files"
-			Filters="">
-			<F N="Software/AllAboutEE-MAX11609-Library/examples/read_all_channels/read_all_channels.ino"/>
-			<F N="Software/AllAboutEE-MAX11609-Library/examples/read_one_channel/read_one_channel.ino"/>
-			<F N="Software/AllAboutEE-MAX11609-Library/examples/template/template.ino"/>
-		</Folder>
-	</Files>
+  Version="10.0"
+  VendorName="SlickEdit"
+  TemplateName="Other C/C++"
+  WorkingDir="."
+  VCSProject="Git:">
+  <Config
+    Name="Debug"
+    Type="cpp"
+    DebugCallbackName="gdb"
+    OutputFile="%bdMAX11609EEE-Breakout-Board"
+    CompilerConfigName="Latest Version">
+    <Menu>
+      <Target
+        Name="Compile"
+        MenuCaption="&amp;Compile"
+        CaptureOutputWith="ProcessBuffer"
+        OutputExts="*.o"
+        SaveOption="SaveCurrent"
+        RunFromDir="%rw">
+        <Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
+      </Target>
+      <Target
+        Name="Link"
+        MenuCaption="&amp;Link">
+        <Exec CmdLine='cc -g -o "%o" %f %libs'/>
+      </Target>
+      <Target
+        Name="Build"
+        MenuCaption="&amp;Build"
+        CaptureOutputWith="ProcessBuffer"
+        SaveOption="SaveWorkspaceFiles"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+      </Target>
+      <Target
+        Name="Rebuild"
+        MenuCaption="&amp;Rebuild"
+        CaptureOutputWith="ProcessBuffer"
+        SaveOption="SaveWorkspaceFiles"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+      </Target>
+      <Target
+        Name="Debug"
+        MenuCaption="&amp;Debug"
+        SaveOption="SaveNone"
+        BuildFirst="1"
+        CaptureOutputWith="ProcessBuffer"
+        RunFromDir="%rw">
+        <Exec CmdLine='vsdebugio -prog "%o"'/>
+      </Target>
+      <Target
+        Name="Execute"
+        MenuCaption="E&amp;xecute"
+        SaveOption="SaveNone"
+        BuildFirst="1"
+        CaptureOutputWith="ProcessBuffer"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%o"'/>
+      </Target>
+    </Menu>
+  </Config>
+  <Config
+    Name="Release"
+    Type="cpp"
+    DebugCallbackName="gdb"
+    OutputFile="%bdMAX11609EEE-Breakout-Board"
+    CompilerConfigName="Latest Version">
+    <Menu>
+      <Target
+        Name="Compile"
+        MenuCaption="&amp;Compile"
+        CaptureOutputWith="ProcessBuffer"
+        SaveOption="SaveCurrent"
+        OutputExts="*.o"
+        RunFromDir="%rw">
+        <Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
+      </Target>
+      <Target
+        Name="Link"
+        MenuCaption="&amp;Link">
+        <Exec CmdLine='cc -O -o "%o" %f %libs'/>
+      </Target>
+      <Target
+        Name="Build"
+        MenuCaption="&amp;Build"
+        CaptureOutputWith="ProcessBuffer"
+        SaveOption="SaveWorkspaceFiles"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+      </Target>
+      <Target
+        Name="Rebuild"
+        MenuCaption="&amp;Rebuild"
+        CaptureOutputWith="ProcessBuffer"
+        SaveOption="SaveWorkspaceFiles"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+      </Target>
+      <Target
+        Name="Debug"
+        MenuCaption="&amp;Debug"
+        SaveOption="SaveNone"
+        BuildFirst="1"
+        CaptureOutputWith="ProcessBuffer"
+        RunFromDir="%rw">
+        <Exec CmdLine='vsdebugio -prog "%o"'/>
+      </Target>
+      <Target
+        Name="Execute"
+        MenuCaption="E&amp;xecute"
+        SaveOption="SaveNone"
+        BuildFirst="1"
+        CaptureOutputWith="ProcessBuffer"
+        RunFromDir="%rw">
+        <Exec CmdLine='"%o"'/>
+      </Target>
+    </Menu>
+  </Config>
+  <Rules Name="Compile">
+    <Rule
+      InputExts="*.s"
+      OutputExts="*.o"
+      LinkObject="1">
+      <Exec CmdLine='as -o "%bd%n.o" "%f"'/>
+    </Rule>
+  </Rules>
+  <Files>
+    <Folder
+      Name="Source Files"
+      Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go">
+      <F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609.cpp"/>
+    </Folder>
+    <Folder
+      Name="Header Files"
+      Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+      <F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609.h"/>
+      <F N="Software/AllAboutEE-MAX11609-Library/AllAboutEE_MAX11609EEE.h"/>
+    </Folder>
+    <Folder
+      Name="Resource Files"
+      Filters="*.ico;*.cur;*.dlg"/>
+    <Folder
+      Name="Bitmaps"
+      Filters="*.bmp"/>
+    <Folder
+      Name="Other Files"
+      Filters="">
+      <F N="NodeMCU/max11609eee.lua"/>
+      <F N="Software/AllAboutEE-MAX11609-Library/examples/read_all_channels/read_all_channels.ino"/>
+      <F N="NodeMCU/read_all_channels.lua"/>
+      <F N="Software/AllAboutEE-MAX11609-Library/examples/read_one_channel/read_one_channel.ino"/>
+      <F N="NodeMCU/simple_read.lua"/>
+      <F N="Software/AllAboutEE-MAX11609-Library/examples/template/template.ino"/>
+    </Folder>
+  </Files>
 </Project>
