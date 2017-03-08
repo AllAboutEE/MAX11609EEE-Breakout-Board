@@ -25,7 +25,7 @@ void AllAboutEE::MAX11609::begin(uint8_t vRef)
     // 4 - SEL0 (vRef)
     // 5 - SEL1 (vRef)
     // 6 - SEL2 (vRef)
-    setup(vRef & 0xf0); // 0B[vRef2][vRef1][vRef0] 0000
+    setup((vRef<<4) & 0xf0); // 0B[vRef2][vRef1][vRef0] 0000
 
     // 0 - Single Ended
     // 1 to 4 - Channel Select:  7

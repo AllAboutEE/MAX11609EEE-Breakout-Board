@@ -12,7 +12,8 @@ gpio0, gpio2 = 3, 4 -- NodeMCU maps pins GPIO0 and GPIO2 to indices 3 and 4 resp
 pinSDA = gpio0 -- We'll use GPIO0 for I2C's SDA
 pinSCL = gpio2 -- We'll use GPIO2 for I2C's SCL
 
-max11609eee.begin(pinSDA,pinSCL,max11609eee.REF_VDD)  -- assign pins connect VDD to 3.3v
+max11609eee.begin(pinSDA,pinSCL)  -- assign pins
+max11609eee.setup(max11609eee.REF_VDD) -- use VDD as reference
 
 -- Continously execute the function code every 1000 milli seconds (1 second)
 tmr.alarm(0,1000,1,function()

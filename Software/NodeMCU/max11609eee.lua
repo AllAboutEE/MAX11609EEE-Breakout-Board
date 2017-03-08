@@ -7,6 +7,7 @@ _G[moduleName] = M
 -- Default value for i2c communication as per NodeMCU API
 local id = 0
 
+
 -- Constant device address.
 local MAX11609EEE_ADDRESS = 0x33
 
@@ -14,14 +15,14 @@ M.REF_EXTERNAL = 0x02
 M.REF_INTERNAL = 0x05
 M.REF_VDD = 0x00
 
-function M.begin(pinSDA, pinSCL,vRef)
+function M.begin(pinSDA, pinSCL)
   i2c.setup(id,pinSDA,pinSCL,i2c.SLOW)
 end
 
-function M.setup(data)
+function M.setup(vref)
   i2c.start(id)
   i2c.address(id,MAX11609EEE_ADDRESS,i2c.TRANSMITTER)
-  i2c.write(id,bit.bor(data,0x80))
+  i2c.write(id,bit.bor(bit.lshift(vref,4),0x80))
   i2c.stop(id)
 end
 
